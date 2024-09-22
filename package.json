@@ -14,6 +14,7 @@
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-select": "^2.1.1",
     "@radix-ui/react-slot": "^1.1.0",
+    "@tanstack/react-query": "^5.56.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.445.0",
@@ -25,6 +26,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.57.1",
     "@types/node": "^20.16.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",
