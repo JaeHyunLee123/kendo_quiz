@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { useForm } from "react-hook-form";
 
-interface QuizAnswer {
+export interface QuizAnswer {
   oneA: number;
   oneB: number;
   oneC: number;
@@ -108,8 +108,7 @@ const Quiz = ({}) => {
             <span>A. 득점을 한 선수의 기를 비스듬히 위로 올린다.</span>
             <span>B. 반칙을 한 선수의 기를 비스듬히 아래로 내린다.</span>
             <span>
-              C. 코등이 싸움 중 양기를 비스듬히 앞으로 낸다. (앞으로 나란히
-              자세).
+              C. 코등이 싸움 중 양기를 앞으로 낸다. (앞으로 나란히 자세).
             </span>
             <span>F. 양기를 똑바로 위로 올린다.</span>
           </div>
