@@ -10,21 +10,28 @@ interface ProblemInputProps {
   inputWidth?: number;
   labelText: string;
   register?: ReturnType<UseFormRegister<QuizForm>>;
+  inputType?: "string" | "number";
+  isTrueFalse?: boolean;
 }
 
 const ProblemInput = forwardRef<HTMLInputElement, ProblemInputProps>(
-  ({ id, inputWidth, labelText, register, ...rest }, ref) => {
+  (
+    { id, inputWidth, labelText, register, inputType = "string", ...rest },
+    ref
+  ) => {
     return (
       <div className="flex space-x-1 items-center">
         <Label htmlFor={id} className="text-lg">
           {labelText}
         </Label>
+
         <Input
           id={id}
           ref={ref}
           className={cn("text-lg", inputWidth ? `w-${inputWidth}` : "")}
           {...register}
           {...rest}
+          type={inputType}
         />
       </div>
     );
