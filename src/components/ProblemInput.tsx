@@ -1,13 +1,11 @@
 import { Label } from "./ui/label";
 import { Input } from "./ui/Input";
-import { cn } from "@/lib/utils";
 import { UseFormRegister } from "react-hook-form";
 import { QuizForm } from "@/app/quiz/page";
 import { forwardRef } from "react";
 
 interface ProblemInputProps {
   id: string;
-  inputWidth?: number;
   labelText: string;
   register?: ReturnType<UseFormRegister<QuizForm>>;
   inputType?: "string" | "number";
@@ -15,12 +13,9 @@ interface ProblemInputProps {
 }
 
 const ProblemInput = forwardRef<HTMLInputElement, ProblemInputProps>(
-  (
-    { id, inputWidth, labelText, register, inputType = "string", ...rest },
-    ref
-  ) => {
+  ({ id, labelText, register, inputType = "string", ...rest }, ref) => {
     return (
-      <div className="flex space-x-1 items-center">
+      <div className="flex space-x-1 items-center justify-center">
         <Label htmlFor={id} className="text-lg">
           {labelText}
         </Label>
@@ -28,7 +23,7 @@ const ProblemInput = forwardRef<HTMLInputElement, ProblemInputProps>(
         <Input
           id={id}
           ref={ref}
-          className={cn("text-lg", inputWidth ? `w-${inputWidth}` : "")}
+          className={"text-lg, w-40"}
           {...register}
           {...rest}
           type={inputType}
