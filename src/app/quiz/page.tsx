@@ -12,6 +12,10 @@ interface QuizAnswer {
   oneB: number;
   oneC: number;
   two: string;
+  threeA: number;
+  threeB: number;
+  threeC: number;
+  threeD: number;
   fourA: "O" | "X";
   fourB: "O" | "X";
   fourC: "O" | "X";
@@ -84,7 +88,7 @@ const Quiz = ({}) => {
         <div className="w-full">
           <ProblemTitle
             problemNumber={2}
-            problemText="검도 득점의 3요소를 기술하시오.(15점)"
+            problemText="검도 득점의 3요소를 기술하시오.(12점)"
           />
           <span>
             {
@@ -97,14 +101,63 @@ const Quiz = ({}) => {
         <div className="w-full">
           <ProblemTitle
             problemNumber={3}
-            problemText="다음 심판의 자세와 취해야하는 행동을 올바르게 매치하시오.(각 7점, 총 28점)"
+            problemText="다음 심판의 자세와 취해야하는 행동을 올바르게 매치하시오.(각 6점, 총 24점)"
           />
+          <div className="w-full border-2 border-black p-2 mb-3 flex flex-col space-y-1">
+            <span className="text-lg">[심판의 자세]</span>
+            <span>A. 득점을 한 선수의 기를 비스듬히 위로 올린다.</span>
+            <span>B. 반칙을 한 선수의 기를 비스듬히 아래로 내린다.</span>
+            <span>
+              C. 코등이 싸움 중 양기를 비스듬히 앞으로 낸다. (앞으로 나란히
+              자세).
+            </span>
+            <span>F. 양기를 똑바로 위로 올린다.</span>
+          </div>
+          <div className="w-full border-2 border-black p-2 mb-3 flex flex-col space-y-1">
+            <span className="text-lg">
+              [취해야하는 행동 (보기 하나는 2개에 매치됨)]
+            </span>
+            <span>1) 시작 위치로 돌아간 후 상대에게 중단을 취한다.</span>
+            <span>
+              2) 시작 위치로 돌아간 후 쉬어칼을 한 후 주심에게 목례한 후
+              상대에게 중단을 취한다.
+            </span>
+            <span>
+              3) 현재 위치에서 그대로 뒤로 물러나며 상대에게 중단을 취한다.
+            </span>
+          </div>
+          <div className="flex space-x-3 w-full flex-col space-y-2 items-start sm:flex-row sm:items-center ">
+            <ProblemInput
+              id="3-a"
+              labelText="A"
+              inputType="number"
+              {...register("quizAnswer.threeA", { valueAsNumber: true })}
+            />
+            <ProblemInput
+              id="3-b"
+              labelText="B"
+              inputType="number"
+              {...register("quizAnswer.threeB", { valueAsNumber: true })}
+            />
+            <ProblemInput
+              id="3-c"
+              labelText="C"
+              inputType="number"
+              {...register("quizAnswer.threeC", { valueAsNumber: true })}
+            />
+            <ProblemInput
+              id="3-d"
+              labelText="D"
+              inputType="number"
+              {...register("quizAnswer.threeD", { valueAsNumber: true })}
+            />
+          </div>
         </div>
 
         <div>
           <ProblemTitle
             problemNumber={4}
-            problemText="다음 글을 읽고 밑줄 친 인물이 반칙을 했는지 안했는지 고르시오.(각 6점, 총 42점)"
+            problemText="다음 글을 읽고 밑줄 친 인물이 반칙을 했는지 안했는지 고르시오.(각 7점, 총 49점)"
           />
           <div className="w-full border-2 border-black p-2">
             <p className="inset-1">
