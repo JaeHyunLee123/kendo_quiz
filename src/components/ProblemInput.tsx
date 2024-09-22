@@ -1,4 +1,4 @@
-import { Label } from "./ui/label";
+import { Label } from "./ui/Label";
 import { Input } from "./ui/Input";
 import { UseFormRegister } from "react-hook-form";
 import { QuizForm } from "@/app/quiz/page";

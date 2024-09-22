@@ -4,7 +4,7 @@ import ProblemInput from "@/components/ProblemInput";
 import ProblemTitle from "@/components/ProblemTitle";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { Label } from "@/components/ui/label";
+import { Label } from "@/components/ui/Label";
 import { useForm } from "react-hook-form";
 
 interface QuizAnswer {
