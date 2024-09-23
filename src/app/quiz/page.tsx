@@ -5,15 +5,19 @@ import ProblemTitle from "@/components/ProblemTitle";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
-//import { useMutation } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-//import { submitQuiz } from "@/action/submitQuiz";
+import { postSubmitQuiz } from "@/app/action/submitQuiz";
 import type { QuizForm } from "@/interface";
 
 const Quiz = ({}) => {
   const { register, handleSubmit } = useForm<QuizForm>();
 
+  const { mutate, isPending } = useMutation({ mutationFn: postSubmitQuiz });
+
   const onSubmit = (form: QuizForm) => {
+    mutate(form);
+    //Todo: error handling
     console.log(form);
   };
 
@@ -307,7 +311,9 @@ const Quiz = ({}) => {
             />
           </div>
         </div>
-        <Button className="w-[70%]">submit</Button>
+        <Button className="w-[70%]" disabled={isPending}>
+          {isPending ? "제출중..." : "제출하기"}
+        </Button>
       </form>
     </main>
   );

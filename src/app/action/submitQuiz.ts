@@ -8,17 +8,28 @@ import { Prisma } from "@prisma/client";
 export const postSubmitQuiz = async (
   quizForm: QuizForm
 ): Promise<{ status: number; errorMsg?: string }> => {
+  console.log("Start server action");
+
   const score = gradeQuiz(quizForm.quizAnswer);
 
+  console.log("Score: " + score);
+
   try {
+    console.log("Create new User");
+
+    const studentId = Number(quizForm.studentId);
+
+    const submitTime = new Date();
     await db.user.create({
       data: {
         name: quizForm.name,
-        studentId: quizForm.studentId,
+        studentId,
         score,
-        submitTime: new Date(),
+        submitTime,
       },
     });
+
+    //Todo: Post Answer
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       // Check for unique constraint violation (P2002 error code)
@@ -28,6 +39,8 @@ export const postSubmitQuiz = async (
         return { status: 400, errorMsg: "This student id is already exist" };
       }
     }
+
+    console.error(error);
 
     return { status: 500, errorMsg: "Unknown error" };
   }
