@@ -5,9 +5,11 @@ import { db } from "@/lib/db";
 import { gradeQuiz } from "@/lib/utils";
 import { Prisma } from "@prisma/client";
 
+type actionMessage = "OK" | "StudentIdAlreadyExist" | "Unknown";
+
 export const postSubmitQuiz = async (
   quizForm: QuizForm
-): Promise<{ status: number; errorMsg?: string }> => {
+): Promise<{ status: number; message: actionMessage }> => {
   console.log("Start server action");
 
   const score = gradeQuiz(quizForm.quizAnswer);
@@ -36,14 +38,14 @@ export const postSubmitQuiz = async (
       if (error.code === "P2002") {
         console.error("A user with this studentId already exists.");
 
-        return { status: 400, errorMsg: "This student id is already exist" };
+        return { status: 400, message: "StudentIdAlreadyExist" };
       }
     }
 
     console.error(error);
 
-    return { status: 500, errorMsg: "Unknown error" };
+    return { status: 500, message: "Unknown" };
   }
 
-  return { status: 200 };
+  return { status: 200, message: "OK" };
 };

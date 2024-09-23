@@ -9,17 +9,40 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { postSubmitQuiz } from "@/app/action/submitQuiz";
 import type { QuizForm } from "@/interface";
+import ErrorMsg from "@/components/ErrorMsg";
+import { useEffect, useState } from "react";
 
 const Quiz = ({}) => {
-  const { register, handleSubmit } = useForm<QuizForm>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<QuizForm>();
 
-  const { mutate, isPending } = useMutation({ mutationFn: postSubmitQuiz });
+  const { mutate, isPending, data } = useMutation({
+    mutationFn: postSubmitQuiz,
+  });
+
+  const [isIdDuplication, setIsIdDuplication] = useState(false);
+  const [isServerError, setIsServerError] = useState(false);
 
   const onSubmit = (form: QuizForm) => {
     mutate(form);
-    //Todo: error handling
     console.log(form);
   };
+
+  useEffect(() => {
+    if (!data) return;
+
+    const { message } = data;
+
+    if (message === "OK") {
+    } else if (message === "StudentIdAlreadyExist") {
+      setIsIdDuplication(true);
+    } else if (message === "Unknown") {
+      setIsServerError(true);
+    }
+  }, [data]);
 
   return (
     <main>
@@ -51,19 +74,25 @@ const Quiz = ({}) => {
               id="1-a"
               labelText="A"
               inputType="number"
-              {...register("quizAnswer.oneA", { valueAsNumber: true })}
+              {...register("quizAnswer.oneA", {
+                valueAsNumber: true,
+              })}
             />
             <ProblemInput
               id="1-b"
               labelText="B"
               inputType="number"
-              {...register("quizAnswer.oneB", { valueAsNumber: true })}
+              {...register("quizAnswer.oneB", {
+                valueAsNumber: true,
+              })}
             />
             <ProblemInput
               id="1-c"
               labelText="C"
               inputType="number"
-              {...register("quizAnswer.oneC", { valueAsNumber: true })}
+              {...register("quizAnswer.oneC", {
+                valueAsNumber: true,
+              })}
             />
           </div>
         </div>
@@ -299,7 +328,12 @@ const Quiz = ({}) => {
         <div className="w-full space-y-2">
           <div className="flex items-center space-x-1">
             <Label htmlFor="name">이름</Label>
-            <Input id="name" className="w-50" {...register("name")} />
+            <Input
+              id="name"
+              className="w-50"
+              {...register("name", { required: "이름을 입력해주세요." })}
+            />
+            <ErrorMsg>{errors.name ? errors.name.message : ""}</ErrorMsg>
           </div>
           <div className="flex items-center space-x-1">
             <Label htmlFor="school-id">학번</Label>
@@ -307,13 +341,24 @@ const Quiz = ({}) => {
               id="school-id"
               type="number"
               className="w-50"
-              {...register("studentId")}
+              {...register("studentId", { required: "학번을 입력해주세요." })}
             />
+            <ErrorMsg>
+              {errors.studentId ? errors.studentId.message : ""}
+            </ErrorMsg>
+            <ErrorMsg>
+              {isIdDuplication ? "이 학번은 이미 존재합니다." : ""}
+            </ErrorMsg>
           </div>
         </div>
         <Button className="w-[70%]" disabled={isPending}>
           {isPending ? "제출중..." : "제출하기"}
         </Button>
+        <ErrorMsg>
+          {isServerError
+            ? "알 수 없는 서버 에러가 발생했습니다. 잠시후 다시 제출해주세요."
+            : ""}
+        </ErrorMsg>
       </form>
     </main>
   );
