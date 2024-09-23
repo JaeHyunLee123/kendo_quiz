@@ -12,7 +12,9 @@ export const postSubmitQuiz = async (
 ): Promise<{ status: number; message: actionMessage }> => {
   console.log("Start server action");
 
-  const score = gradeQuiz(quizForm.quizAnswer);
+  const { quizAnswer } = quizForm;
+
+  const score = gradeQuiz(quizAnswer);
 
   console.log("Score: " + score);
 
@@ -32,6 +34,31 @@ export const postSubmitQuiz = async (
     });
 
     //Todo: Post Answer
+
+    await db.quizAnswer.create({
+      data: {
+        studentId,
+
+        oneA: Number(quizAnswer.oneA),
+        oneB: Number(quizAnswer.oneB),
+        oneC: Number(quizAnswer.oneC),
+
+        two: quizAnswer.two,
+
+        threeA: Number(quizAnswer.threeA),
+        threeB: Number(quizAnswer.threeB),
+        threeC: Number(quizAnswer.threeC),
+        threeD: Number(quizAnswer.threeD),
+
+        fourA: quizAnswer.fourA === "O" ? true : false,
+        fourB: quizAnswer.fourB === "O" ? true : false,
+        fourC: quizAnswer.fourC === "O" ? true : false,
+        fourD: quizAnswer.fourD === "O" ? true : false,
+        fourE: quizAnswer.fourE === "O" ? true : false,
+        fourF: quizAnswer.fourF === "O" ? true : false,
+        fourG: quizAnswer.fourG === "O" ? true : false,
+      },
+    });
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       // Check for unique constraint violation (P2002 error code)
