@@ -1,3 +1,5 @@
+"use client";
+
 import { Label } from "./ui/Label";
 import { Input } from "./ui/Input";
 import { UseFormRegister } from "react-hook-form";

@@ -5,7 +5,7 @@ import { db } from "@/lib/db";
 import { gradeQuiz } from "@/lib/utils";
 import { Prisma } from "@prisma/client";
 
-export const submitQuiz = async (
+export const postSubmitQuiz = async (
   quizForm: QuizForm
 ): Promise<{ status: number; errorMsg?: string }> => {
   const score = gradeQuiz(quizForm.quizAnswer);
