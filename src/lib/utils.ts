@@ -24,6 +24,24 @@ interface QuizScore {
   fourG: number;
 }
 
+export const QuizSolution: QuizAnswer = {
+  oneA: 2,
+  oneB: 3,
+  oneC: 5,
+  two: "기검체",
+  threeA: 1,
+  threeB: 2,
+  threeC: 3,
+  threeD: 1,
+  fourA: "O",
+  fourB: "O",
+  fourC: "O",
+  fourD: "X",
+  fourE: "X",
+  fourF: "X",
+  fourG: "O",
+};
+
 export const gradeQuiz = (studentAnswer: QuizAnswer) => {
   let score = 0;
 

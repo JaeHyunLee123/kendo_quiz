@@ -11,6 +11,7 @@ import { postSubmitQuiz } from "@/app/action/submitQuiz";
 import type { QuizForm } from "@/interface";
 import ErrorMsg from "@/components/ErrorMsg";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Quiz = ({}) => {
   const {
@@ -25,9 +26,13 @@ const Quiz = ({}) => {
 
   const [isIdDuplication, setIsIdDuplication] = useState(false);
   const [isServerError, setIsServerError] = useState(false);
+  const [studentId, setStudentId] = useState(0);
+
+  const router = useRouter();
 
   const onSubmit = (form: QuizForm) => {
     mutate(form);
+    setStudentId(form.studentId);
     console.log(form);
   };
 
@@ -37,6 +42,7 @@ const Quiz = ({}) => {
     const { message } = data;
 
     if (message === "OK") {
+      router.push(`/solution/${studentId}`);
     } else if (message === "StudentIdAlreadyExist") {
       setIsIdDuplication(true);
     } else if (message === "Unknown") {
