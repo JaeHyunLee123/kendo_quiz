@@ -1,8 +1,9 @@
 import { Label } from "./ui/Label";
 import { Input } from "./ui/Input";
 import { UseFormRegister } from "react-hook-form";
-import { QuizForm } from "@/app/quiz/page";
+
 import { forwardRef } from "react";
+import { QuizForm } from "@/interface";
 
 interface ProblemInputProps {
   id: string;

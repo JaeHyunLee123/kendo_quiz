@@ -5,31 +5,10 @@ import ProblemTitle from "@/components/ProblemTitle";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
+//import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-
-export interface QuizAnswer {
-  oneA: number;
-  oneB: number;
-  oneC: number;
-  two: string;
-  threeA: number;
-  threeB: number;
-  threeC: number;
-  threeD: number;
-  fourA: "O" | "X";
-  fourB: "O" | "X";
-  fourC: "O" | "X";
-  fourD: "O" | "X";
-  fourE: "O" | "X";
-  fourF: "O" | "X";
-  fourG: "O" | "X";
-}
-
-export interface QuizForm {
-  quizAnswer: QuizAnswer;
-  name: string;
-  studentId: number;
-}
+//import { submitQuiz } from "@/action/submitQuiz";
+import type { QuizForm } from "@/interface";
 
 const Quiz = ({}) => {
   const { register, handleSubmit } = useForm<QuizForm>();
@@ -328,7 +307,7 @@ const Quiz = ({}) => {
             />
           </div>
         </div>
-        <Button className="w-[70%]">Submit</Button>
+        <Button className="w-[70%]">submit</Button>
       </form>
     </main>
   );

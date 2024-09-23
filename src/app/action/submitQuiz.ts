@@ -1,7 +1,7 @@
 "use server";
 
+import type { QuizForm } from "@/interface";
 import { db } from "@/lib/db";
-import { QuizForm } from "../quiz/page";
 import { gradeQuiz } from "@/lib/utils";
 import { Prisma } from "@prisma/client";
 
@@ -28,6 +28,8 @@ export const submitQuiz = async (
         return { status: 400, errorMsg: "This student id is already exist" };
       }
     }
+
+    return { status: 500, errorMsg: "Unknown error" };
   }
 
   return { status: 200 };
