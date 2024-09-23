@@ -337,7 +337,17 @@ const Quiz = ({}) => {
             <Input
               id="name"
               className="w-50"
-              {...register("name", { required: "이름을 입력해주세요." })}
+              {...register("name", {
+                required: "이름을 입력해주세요.",
+                maxLength: {
+                  value: 10,
+                  message: "2글자 이상 10글자 이하로 입력해주세요.",
+                },
+                minLength: {
+                  value: 2,
+                  message: "2글자 이상 10글자 이하로 입력해주세요.",
+                },
+              })}
             />
             <ErrorMsg>{errors.name ? errors.name.message : ""}</ErrorMsg>
           </div>
@@ -347,7 +357,17 @@ const Quiz = ({}) => {
               id="school-id"
               type="number"
               className="w-50"
-              {...register("studentId", { required: "학번을 입력해주세요." })}
+              {...register("studentId", {
+                required: "학번을 입력해주세요.",
+                min: {
+                  value: 1000000000,
+                  message: "올바른 형식의 학번을 입력하세요.",
+                },
+                max: {
+                  value: 5000000000,
+                  message: "올바른 형식의 학번을 입력하세요.",
+                },
+              })}
             />
             <ErrorMsg>
               {errors.studentId ? errors.studentId.message : ""}
