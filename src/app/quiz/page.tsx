@@ -27,6 +27,7 @@ const Quiz = ({}) => {
   const [isIdDuplication, setIsIdDuplication] = useState(false);
   const [isServerError, setIsServerError] = useState(false);
   const [studentId, setStudentId] = useState(0);
+  const [isSubmitOk, setIsSubmitOk] = useState(false);
 
   const router = useRouter();
 
@@ -42,13 +43,14 @@ const Quiz = ({}) => {
     const { message } = data;
 
     if (message === "OK") {
+      setIsSubmitOk(true);
       router.push(`/solution/${studentId}`);
     } else if (message === "StudentIdAlreadyExist") {
       setIsIdDuplication(true);
     } else if (message === "Unknown") {
       setIsServerError(true);
     }
-  }, [data]);
+  }, [data, router, studentId]);
 
   return (
     <main>
@@ -377,8 +379,12 @@ const Quiz = ({}) => {
             </ErrorMsg>
           </div>
         </div>
-        <Button className="w-[70%]" disabled={isPending}>
-          {isPending ? "제출중..." : "제출하기"}
+        <Button className="w-[70%]" disabled={isPending || isSubmitOk}>
+          {isSubmitOk
+            ? "정답페이지로 넘어가는 중..."
+            : isPending
+            ? "제출중..."
+            : "제출하기"}
         </Button>
         <ErrorMsg>
           {isServerError
