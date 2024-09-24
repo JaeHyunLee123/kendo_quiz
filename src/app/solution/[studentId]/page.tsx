@@ -119,7 +119,7 @@ export default async function Page({
               <span>
                 C. 코등이 싸움 중 양기를 앞으로 낸다. (앞으로 나란히 자세).
               </span>
-              <span>F. 양기를 똑바로 위로 올린다.</span>
+              <span>D. 양기를 똑바로 위로 올린다.</span>
             </div>
             <div className="w-full border-2 border-black p-2 mb-3 flex flex-col space-y-1">
               <span className="text-lg">
@@ -156,7 +156,7 @@ export default async function Page({
             <Explaination
               isRight={studentAnswer.threeD === quizSolution.threeD}
             >
-              C: 1
+              D: 1
             </Explaination>
           </div>
 

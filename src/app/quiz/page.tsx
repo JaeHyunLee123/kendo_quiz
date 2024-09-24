@@ -119,16 +119,16 @@ const Quiz = ({}) => {
         <div className="w-full">
           <ProblemTitle
             problemNumber={3}
-            problemText="다음 심판의 자세와 취해야하는 행동을 올바르게 매치하시오.(각 6점, 총 24점)"
+            problemText="다음 심판의 행동 취해야하는 행동을 올바르게 매치하시오.(각 6점, 총 24점)"
           />
           <div className="w-full border-2 border-black p-2 mb-3 flex flex-col space-y-1">
-            <span className="text-lg">[심판의 자세]</span>
+            <span className="text-lg">[심판의 행동]</span>
             <span>A. 득점을 한 선수의 기를 비스듬히 위로 올린다.</span>
             <span>B. 반칙을 한 선수의 기를 비스듬히 아래로 내린다.</span>
             <span>
               C. 코등이 싸움 중 양기를 앞으로 낸다. (앞으로 나란히 자세).
             </span>
-            <span>F. 양기를 똑바로 위로 올린다.</span>
+            <span>D. 양기를 똑바로 위로 올린다.</span>
           </div>
           <div className="w-full border-2 border-black p-2 mb-3 flex flex-col space-y-1">
             <span className="text-lg">
