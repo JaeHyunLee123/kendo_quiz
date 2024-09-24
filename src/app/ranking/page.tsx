@@ -23,6 +23,9 @@ const Ranking = async () => {
 
   return (
     <main>
+      <span className="text-sm">
+        랭킹은 점수 순, 점수가 같으면 제출 시간 순으로 매깁니다.
+      </span>
       {ranking.map((student, i) => (
         <div key={i} className="space-x-2">
           <span>{`${i + 1}등`}</span>
@@ -30,7 +33,7 @@ const Ranking = async () => {
           <span>{`${student.score}점`}</span>
           <span>{`${student.submitTime
             .toISOString()
-            .slice(0, 10)} ${student.submitTime
+            .slice(5, 10)} ${student.submitTime
             .toISOString()
             .slice(11, 19)} 제출`}</span>
         </div>
