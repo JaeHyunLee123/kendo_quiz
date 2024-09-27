@@ -29,26 +29,34 @@ const Ranking = async () => {
     });
 
     return (
-      <main>
+      <main className="flex flex-col justify-center items-center">
         <span className="text-sm">
           랭킹은 점수 순, 점수가 같으면 제출 시간 순으로 매깁니다.
         </span>
-        {ranking.map((student, i) => (
-          <div key={i} className="space-x-2">
-            <span>{`${i + 1}등`}</span>
-            <span>{student.name}</span>
-            <span>{`${student.score}점`}</span>
-            <span>{`${
-              student.submitTime
-                ? student.submitTime.toISOString().slice(5, 10)
-                : "N/A"
-            } ${
-              student.submitTime
-                ? student.submitTime.toISOString().slice(11, 19)
-                : ""
-            } 제출`}</span>
-          </div>
-        ))}
+        <div className="space-y-2 my-3">
+          {ranking.map((student, i) => (
+            <div key={i} className="space-x-2">
+              <span>{`${i + 1}등`}</span>
+              <span>{student.name}</span>
+              <span>{`${student.score}점`}</span>
+              <span>{`${
+                student.submitTime
+                  ? new Date(student.submitTime).toLocaleString("ko-KR", {
+                      month: "2-digit",
+                      day: "2-digit",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      second: "2-digit",
+                      hour12: false, // To use 24-hour format
+                      timeZone: "Asia/Seoul", // Set to Korea Standard Time
+                    })
+                  : "N/A"
+              } 제출
+`}</span>
+            </div>
+          ))}
+        </div>
+
         <NavigatingBtn href="/" text="홈으로 가기" />
       </main>
     );
