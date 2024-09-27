@@ -5,7 +5,6 @@ import { Gowun_Batang } from "next/font/google";
 import Providers from "@/lib/Providers";
 import { Suspense } from "react";
 import Loading from "./loading";
-import Header from "@/components/Header";
 
 const gowunBatang = Gowun_Batang({
   weight: ["400", "700"],
