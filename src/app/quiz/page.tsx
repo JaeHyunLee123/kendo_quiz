@@ -173,7 +173,7 @@ const Quiz = ({}) => {
           </div>
         </div>
 
-        <div>
+        <div className="w-full">
           <ProblemTitle
             problemNumber={4}
             problemText="다음 글을 읽고 밑줄 친 인물이 반칙을 했는지 안했는지 고르시오.(각 7점, 총 49점)"

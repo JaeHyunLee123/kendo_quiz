@@ -1,4 +1,5 @@
 // ranking/page.tsx
+import NavigatingBtn from "@/components/NavigatingBtn";
 import { db } from "@/lib/db";
 import { cookies } from "next/headers";
 
@@ -48,6 +49,7 @@ const Ranking = async () => {
             } 제출`}</span>
           </div>
         ))}
+        <NavigatingBtn href="/" text="홈으로 가기" />
       </main>
     );
   } catch (error) {

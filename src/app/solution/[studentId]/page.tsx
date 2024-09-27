@@ -1,9 +1,8 @@
 import Explaination from "@/components/Explaination";
+import NavigatingBtn from "@/components/NavigatingBtn";
 import ProblemTitle from "@/components/ProblemTitle";
-import { Button } from "@/components/ui/Button";
 import { db } from "@/lib/db";
 import { QuizAnswer } from "@prisma/client";
-import Link from "next/link";
 
 export default async function Page({
   params,
@@ -267,9 +266,7 @@ export default async function Page({
         </div>
       </div>
       <div className="flex justify-center mt-5">
-        <Button>
-          <Link href="/ranking">랭킹 보러 가기</Link>
-        </Button>{" "}
+        <NavigatingBtn href="/ranking" text="랭킹 보러 가기" />
       </div>
     </main>
   );
