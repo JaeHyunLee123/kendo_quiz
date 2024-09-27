@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { cookies } from "next/headers";
 
 const Ranking = async () => {
+  //just for dynamic render
   const cookie = cookies();
   console.log(cookie);
   try {
