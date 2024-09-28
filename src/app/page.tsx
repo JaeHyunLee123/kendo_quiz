@@ -12,6 +12,9 @@ export default function Home() {
     <div className="flex flex-col space-y-2 justify-center items-center">
       <span>검도 퀴즈</span>
       <span>문제 풀고 상품 받아가세요</span>
+      <span className="text-red-500 text-sm">
+        링크 이동이 느리면 새로고침 후 다시 시도해주세요
+      </span>
       <Button
         className="w-52"
         onClick={() => {
